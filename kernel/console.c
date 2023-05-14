@@ -189,7 +189,7 @@ consoleioctl(int user_dst, uint64 dst, int request)
 }	
 
 void
-consoleinit(void)
+devconsoleinit(void)
 {
   initlock(&cons.lock, "cons");
 
@@ -197,7 +197,7 @@ consoleinit(void)
 
   // connect read and write system calls
   // to consoleread and consolewrite.
-  devsw[CONSOLE].read = consoleread;
-  devsw[CONSOLE].write = consolewrite;
-  devsw[CONSOLE].ioctl = consoleioctl;
+  devsw[DEV_CONSOLE].read = consoleread;
+  devsw[DEV_CONSOLE].write = consolewrite;
+  devsw[DEV_CONSOLE].ioctl = consoleioctl;
 }
