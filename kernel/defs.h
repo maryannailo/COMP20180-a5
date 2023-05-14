@@ -25,6 +25,9 @@ void            consputc(int);
 // exec.c
 int             exec(char*, char**);
 
+// devices.c
+void            devinit(void);
+
 // file.c
 struct file*    filealloc(void);
 void            fileclose(struct file*);
