@@ -13,8 +13,6 @@ char *argv[] = { "sh", 0 };
 
 void setup_dev (void)
 {
-  
-
   if(open("/dev/console", O_RDWR) < 0){
     mknod("/dev/console", DEV_CONSOLE, 1);
     open("/dev/console", O_RDWR);
