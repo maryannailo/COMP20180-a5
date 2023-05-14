@@ -11,15 +11,27 @@
 
 char *argv[] = { "sh", 0 };
 
-int
-main(void)
+void setup_dev (void)
 {
-  int pid, wpid;
+  
 
-  if(open("console", O_RDWR) < 0){
-    mknod("console", CONSOLE, 0);
-    open("console", O_RDWR);
+  if(open("/dev/console", O_RDWR) < 0){
+    mknod("/dev/console", DEV_CONSOLE, 1);
+    open("/dev/console", O_RDWR);
   }
+  
+  if(open("/dev/null", O_RDWR) < 0)
+    mknod("/dev/null", DEV_NULL, 1);
+
+  if(open("/dev/zero", O_RDWR) < 0)
+    mknod("/dev/zero", DEV_ZERO, 1);
+}
+
+int main(void)
+{
+  setup_devices();
+  int pid, wpid;
+  
   dup(0);  // stdout
   dup(0);  // stderr
 
